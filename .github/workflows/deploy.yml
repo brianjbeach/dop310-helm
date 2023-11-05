@@ -37,4 +37,5 @@ jobs:
       with:
         aws-region: us-west-2
         cluster-name: dop310
-        name: hello_world
+        name: hello-world
+        chart-path: hello-world
