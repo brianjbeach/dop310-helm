@@ -22,13 +22,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Deploy Helm
-        uses: bitovi/github-actions-deploy-eks-helm@v1.2.8
-        with:
-          aws-region: us-west-2
-          cluster-name: dop310
-          name: hello_world
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::208362219457:role/GitHub
+        aws-region: us-west-2
+    - name: Deploy Helm
+      uses: bitovi/github-actions-deploy-eks-helm@v1.2.8
+      with:
+        aws-region: us-west-2
+        cluster-name: dop310
+        name: hello_world
